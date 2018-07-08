@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_08_200529) do
+ActiveRecord::Schema.define(version: 2018_07_08_212049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,4 +46,36 @@ ActiveRecord::Schema.define(version: 2018_07_08_200529) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "lawyer_license_areas", force: :cascade do |t|
+    t.bigint "lawyer_id"
+    t.bigint "license_area_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lawyer_id"], name: "index_lawyer_license_areas_on_lawyer_id"
+    t.index ["license_area_id"], name: "index_lawyer_license_areas_on_license_area_id"
+  end
+
+  create_table "lawyers", force: :cascade do |t|
+    t.string "name"
+    t.string "firm_name"
+    t.string "phone_number"
+    t.text "bio_info"
+    t.string "signal_number"
+    t.integer "pro_bono_hours"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "state"
+    t.string "country"
+    t.integer "zip_code"
+    t.string "street_address"
+  end
+
+  create_table "license_areas", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "lawyer_license_areas", "lawyers"
+  add_foreign_key "lawyer_license_areas", "license_areas"
 end
