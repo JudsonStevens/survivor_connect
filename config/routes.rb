@@ -6,4 +6,8 @@ Rails.application.routes.draw do
     resources :lawyers
     resources :license_areas
   end
+
+  get '*path', to: 'application#fallback_index_html', constraints: ->(request) do
+    !request.xhr && request.format.html?
+  end
 end

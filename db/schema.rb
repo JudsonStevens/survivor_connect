@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 2018_07_08_212049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "postgis"
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -62,12 +63,14 @@ ActiveRecord::Schema.define(version: 2018_07_08_212049) do
     t.text "bio_info"
     t.string "signal_number"
     t.integer "pro_bono_hours"
+    t.geography "location_lonlat", limit: {:srid=>4326, :type=>"st_point", :geographic=>true}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "state"
     t.string "country"
     t.integer "zip_code"
     t.string "street_address"
+    t.index ["location_lonlat"], name: "index_lawyers_on_location_lonlat", using: :gist
   end
 
   create_table "license_areas", force: :cascade do |t|
