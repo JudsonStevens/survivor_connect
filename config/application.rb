@@ -22,7 +22,11 @@ module SurvivorConnect
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
-        resource '*', headers: :any, methods: [:get, :post]
+        resource '*', 
+          headers: %w(Authorization), 
+          methods: [:get, :post],
+          expose: %w(Authorization),
+          max_age: 600
       end
     end
     # Initialize configuration defaults for originally generated Rails version.
@@ -43,6 +47,5 @@ module SurvivorConnect
     config.middleware.use ActionDispatch::Flash
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
-
   end
 end

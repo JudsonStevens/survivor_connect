@@ -1,0 +1,2 @@
+class SurvivorConnectMailer < ApplicationMailer
+end

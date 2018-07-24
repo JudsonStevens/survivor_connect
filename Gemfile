@@ -30,6 +30,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # ActiveAdmin
 gem 'devise'
+gem 'devise-jwt'
 gem 'activeadmin'
 gem 'geocoder'
 gem 'rack-cors', require: 'rack/cors'
