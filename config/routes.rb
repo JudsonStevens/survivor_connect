@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   
   get '/', to: 'homepage#index'
-  namespace :api, defaults: { format: 'json' } do
-    devise_for :lawyers, controllers: { sessions: 'api/sessions', registrations: 'api/registrations' }
-    post '/register_lawyer', to: 'lawyers#create'
-    resources :lawyers, only: [:index]
+  devise_for :users, defaults: { format: :json }, controllers: { sessions: 'sessions', registrations: 'registrations' }
+  namespace :api do
+    # post '/register_user', to: 'users#create'
+    resources :users, only: [:index, :show]
   end
 
   get '*path', to: 'application#fallback_index_html', constraints: ->(request) do

@@ -1,6 +1,6 @@
 class CreateLawyers < ActiveRecord::Migration[5.2]
   def change
-    create_table :lawyers do |t|
+    create_table :lawyer do |t|
       t.string :name
       t.string :address
       t.string :firm_name

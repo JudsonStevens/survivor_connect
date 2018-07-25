@@ -1,11 +1,11 @@
-class Api::LawyersController < ApiController
+class Api::UsersController < ApiController
   def index
     if params[:q]
       address = params[:q]
-      results = Lawyer.near(address, 30)
+      results = User.near(address, 30)
       render json: results
     else
-      render json: Lawyer.all
+      render json: User.all
     end
   end
 

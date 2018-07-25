@@ -1,12 +1,12 @@
-class Lawyer < ApplicationRecord
+class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: JWTBlacklist
 
-  has_many :lawyer_license_areas
-  has_many :license_areas, through: :lawyer_license_areas
+  has_many :User_license_areas
+  has_many :license_areas, through: :User_license_areas
 
   geocoded_by :address
 

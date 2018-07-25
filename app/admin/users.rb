@@ -1,5 +1,5 @@
-ActiveAdmin.register Lawyer do
-  permit_params :name, :address, :firm_name, :phone_number, :pro_bono_hours, :bio_info, :signal_number
+ActiveAdmin.register User do
+  permit_params :name, :address, :firm_name, :phone_number, :pro_bono_hours, :bio_info, :signal_number, :password, :password_confirmation
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
