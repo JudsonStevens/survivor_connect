@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   get '/', to: 'homepage#index'
+
   
   namespace :api do
+    post '/contact', to: "contacts#create"
     resources :lawyers, only: [:index]
     resources :license_areas
   end
