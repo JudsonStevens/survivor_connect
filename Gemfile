@@ -30,9 +30,12 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # ActiveAdmin
 gem 'devise'
+gem 'devise-jwt'
 gem 'activeadmin'
 gem 'geocoder'
 gem 'rack-cors', require: 'rack/cors'
+gem 'country_select'
+gem 'figaro'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
