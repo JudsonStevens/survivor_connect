@@ -3,11 +3,7 @@ class Api::ContactsController < ApiController
   def create
     # binding.pry
     message = Message.new(message_params)
-    if message.save
-      redirect_to '/'
-    else
-      redirect_to '/contact'
-    end
+    render json: Message.last
   end
 
   private
