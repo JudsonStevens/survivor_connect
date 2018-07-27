@@ -1,6 +1,7 @@
-class CreateLawyers < ActiveRecord::Migration[5.2]
+class RemoveLawyerTable < ActiveRecord::Migration[5.2]
   def change
-    create_table :lawyer do |t|
+    remove_foreign_key :lawyer_license_areas, :lawyer
+    drop_table :lawyers do |t|
       t.string :name
       t.string :address
       t.string :firm_name

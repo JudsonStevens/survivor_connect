@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_25_204021) do
+ActiveRecord::Schema.define(version: 2018_07_26_224835) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,17 +47,51 @@ ActiveRecord::Schema.define(version: 2018_07_25_204021) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "lawyer_license_areas", force: :cascade do |t|
-    t.bigint "lawyer_id"
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
+    t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
+  create_table "jwt_blacklist", force: :cascade do |t|
+    t.string "jti", null: false
+    t.datetime "exp", null: false
+    t.index ["jti"], name: "index_jwt_blacklist_on_jti"
+  end
+
+  create_table "license_areas", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_license_areas", force: :cascade do |t|
     t.bigint "license_area_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["lawyer_id"], name: "index_lawyer_license_areas_on_lawyer_id"
-    t.index ["license_area_id"], name: "index_lawyer_license_areas_on_license_area_id"
+    t.bigint "user_id"
+    t.index ["license_area_id"], name: "index_user_license_areas_on_license_area_id"
   end
 
-  create_table "lawyers", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
     t.string "name"
+    t.string "address"
     t.string "firm_name"
     t.string "phone_number"
     t.text "bio_info"
@@ -66,19 +101,11 @@ ActiveRecord::Schema.define(version: 2018_07_25_204021) do
     t.float "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "state"
-    t.string "country"
-    t.integer "zip_code"
-    t.string "city"
-    t.string "street_address"
+    t.string "slug"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
-
-  create_table "license_areas", force: :cascade do |t|
-    t.string "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
+  
   create_table "messages", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -86,7 +113,5 @@ ActiveRecord::Schema.define(version: 2018_07_25_204021) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  add_foreign_key "lawyer_license_areas", "lawyers"
-  add_foreign_key "lawyer_license_areas", "license_areas"
+  add_foreign_key "user_license_areas", "license_areas"
 end

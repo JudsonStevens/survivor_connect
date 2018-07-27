@@ -23,7 +23,7 @@ module SurvivorConnect
       allow do
         origins '*'
         resource '*', 
-          headers: %w(Authorization), 
+          headers: %w(Authorization),
           methods: [:get, :post],
           expose: %w(Authorization),
           max_age: 600
