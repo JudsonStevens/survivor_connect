@@ -7,8 +7,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: JWTBlacklist
 
-  has_many :User_license_areas
-  has_many :license_areas, through: :User_license_areas
+  has_many :user_license_areas
+  has_many :license_areas, through: :user_license_areas
 
   geocoded_by :address
 

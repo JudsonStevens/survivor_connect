@@ -80,8 +80,8 @@ ActiveRecord::Schema.define(version: 2018_07_27_172704) do
 
   create_table "user_license_areas", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "license_areas_id"
-    t.index ["license_areas_id"], name: "index_user_license_areas_on_license_areas_id"
+    t.bigint "license_area_id"
+    t.index ["license_area_id"], name: "index_user_license_areas_on_license_area_id"
     t.index ["user_id"], name: "index_user_license_areas_on_user_id"
   end
 
@@ -112,6 +112,6 @@ ActiveRecord::Schema.define(version: 2018_07_27_172704) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "user_license_areas", "license_areas", column: "license_areas_id"
+  add_foreign_key "user_license_areas", "license_areas"
   add_foreign_key "user_license_areas", "users"
 end
