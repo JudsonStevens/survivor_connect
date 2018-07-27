@@ -1,5 +1,5 @@
 class SessionsController < Devise::SessionsController
-  response_to :json
+  respond_to :json
 
   private
 
