@@ -2,7 +2,6 @@ class RegistrationsController < Devise::RegistrationsController
   respond_to :json, :controllers => { sessions: 'sessions', registrations: 'registrations' }
   before_action :registration_params, if: :devise_controller?, on: [:create]
   def create
-    require 'pry'; binding.pry
     super do
       build_resource(registration_params)
       resource.password = registration_params[:password]

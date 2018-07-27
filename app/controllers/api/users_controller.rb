@@ -1,4 +1,6 @@
 class Api::UsersController < ApiController
+  before_action :authenticate_user!, only: [:edit]
+
   def index
     if params[:q]
       address = params[:q]
@@ -9,11 +11,12 @@ class Api::UsersController < ApiController
     end
   end
 
+  def update
+    render json: current_user
+  end
+
   def show
-  end
-
-  def create
     require 'pry'; binding.pry
+    render json: User.friendly.find(params[:id])
   end
-
 end

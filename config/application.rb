@@ -23,8 +23,10 @@ module SurvivorConnect
       allow do
         origins '*'
         resource '*', 
-          header: :any,
-          methods: [:get, :post]
+          headers: %w(Authorization),
+          methods: [:get, :post],
+          expose: %w(Authorization),
+          max_age: 600
       end
     end
     # Initialize configuration defaults for originally generated Rails version.

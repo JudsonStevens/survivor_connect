@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  extend FriendlyId
+  friendly_id :email, use: :slugged
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: JWTBlacklist
@@ -10,6 +12,7 @@ class User < ApplicationRecord
 
   geocoded_by :address
 
+  before_save :generate_slug
   after_validation :geocode, if: :address_or_zip_changed?
 
   def full_address
@@ -18,5 +21,9 @@ class User < ApplicationRecord
 
   def address_or_zip_changed?
     address_changed?
+  end
+
+  def generate_slug
+    self.slug = self.email.split('@')[0]
   end
 end

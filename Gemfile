@@ -38,6 +38,7 @@ gem 'country_select'
 gem 'figaro'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'activerecord-session_store'
+gem 'friendly_id', '~> 5.1.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
