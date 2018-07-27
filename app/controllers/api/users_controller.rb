@@ -1,5 +1,5 @@
 class Api::UsersController < ApiController
-  before_action :authenticate_user!, only: [:edit]
+  before_action :authenticate_user!, only: [:update]
 
   def index
     if params[:q]
@@ -16,7 +16,13 @@ class Api::UsersController < ApiController
   end
 
   def show
-    require 'pry'; binding.pry
-    render json: User.friendly.find(params[:id])
+    # If the user is signed in and is viewing their own profile page, that's fine. If not, that's fine as well.
+    # This should handle both situations. If the user is viewing their own page, add an attribute telling the front end
+    # to display the buttons only they should see, in order to edit their account or other tasks of that nature.
+    if request.headers['HTTP_AUTHORIZATION'] && user_signed_in? && (User.friendly.find(current_user.id) == User.friendly.find(params[:id]))
+      render json: CustomUserSerializer.new(User.friendly.find(current_user.id))
+    else
+      render json: User.friendly.find(params[:id])
+    end
   end
 end
