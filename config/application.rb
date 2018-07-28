@@ -29,7 +29,7 @@ module SurvivorConnect
           max_age: 600
       end
       allow do
-        origins 'www.survivor-connect.com'
+        origins 'http://www.survivor-connect.com'
         resource '*', 
           headers: %w(Authorization),
           methods: [:get, :post],
@@ -37,7 +37,15 @@ module SurvivorConnect
           max_age: 600
       end
       allow do
-        origins 'survivor-connect.com'
+        origins 'http://survivor-connect.com'
+        resource '*', 
+          headers: %w(Authorization),
+          methods: [:get, :post],
+          expose: %w(Authorization),
+          max_age: 600
+      end
+      allow do
+        origins 'http://localhost:3000'
         resource '*', 
           headers: %w(Authorization),
           methods: [:get, :post],
