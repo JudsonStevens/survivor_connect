@@ -4,7 +4,7 @@ class User < ApplicationRecord
   extend FriendlyId
   friendly_id :email, use: :slugged
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
+         :recoverable, :rememberable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: JWTBlacklist
 
   has_many :user_license_areas
