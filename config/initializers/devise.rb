@@ -281,7 +281,7 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
   config.navigational_formats = []
-  config.secret_key = 'b8da97d69594c2322add4daf5d32bd200ae1e1005375952ab86052d191ea4548bfb36d5110999377bb891b7293a38d6efdf908bf6140c455486da6f88b228407'
+  config.secret_key = ENV['SECRET_KEY_BASE']
   config.jwt do |jwt|
     jwt.secret = ENV['DEVISE_JWT_SECRET_KEY']
     # jwt.dispatch_requests = [
