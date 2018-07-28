@@ -21,7 +21,23 @@ module SurvivorConnect
   class Application < Rails::Application
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins '*'
+        origins 'http://survivor-connect.s3-website.us-east-2.amazonaws.com'
+        resource '*', 
+          headers: %w(Authorization),
+          methods: [:get, :post],
+          expose: %w(Authorization),
+          max_age: 600
+      end
+      allow do
+        origins 'www.survivor-connect.com'
+        resource '*', 
+          headers: %w(Authorization),
+          methods: [:get, :post],
+          expose: %w(Authorization),
+          max_age: 600
+      end
+      allow do
+        origins 'survivor-connect.com'
         resource '*', 
           headers: %w(Authorization),
           methods: [:get, :post],

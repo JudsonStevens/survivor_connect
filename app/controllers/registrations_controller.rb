@@ -1,6 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
   respond_to :json, :controllers => { sessions: 'sessions', registrations: 'registrations' }
   before_action :registration_params, if: :devise_controller?, on: [:create]
+  
   def create
     super do
       build_resource(registration_params)
