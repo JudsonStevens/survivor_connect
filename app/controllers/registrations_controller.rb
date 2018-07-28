@@ -6,7 +6,6 @@ class RegistrationsController < Devise::RegistrationsController
       build_resource(registration_params)
       resource.password = registration_params[:password]
       resource.password_confirmation = registration_params[:password_confirmation]
-      require 'pry'; binding.pry
       resource.save!
       # if resource.save!
       #   # return render :json => resource, serializer: UserSerializer
