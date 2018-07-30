@@ -7,11 +7,6 @@ class RegistrationsController < Devise::RegistrationsController
       resource.password = registration_params[:password]
       resource.password_confirmation = registration_params[:password_confirmation]
       resource.save!
-      # if resource.save!
-      #   # return render :json => resource, serializer: UserSerializer
-      # else
-      #   return render :json => resource, serializer: UserSerializer, meta: { message: 'Registration failed.' }
-      # end
     end
   end
 

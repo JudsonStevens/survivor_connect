@@ -52,6 +52,14 @@ module SurvivorConnect
           expose: %w(Authorization),
           max_age: 600
       end
+      allow do
+        origins 'https://maps.googleapis.com/*'
+        resource '*', 
+          headers: %w(Authorization),
+          methods: [:get, :post],
+          expose: %w(Authorization),
+          max_age: 600
+      end
     end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2

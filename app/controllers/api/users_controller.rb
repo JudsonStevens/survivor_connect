@@ -5,7 +5,7 @@ class Api::UsersController < ApiController
     if params[:q]
       address = params[:q]
       results = User.near(address, 30)
-      render json: results
+      render json: (results + [(Geocoder.search(address).first.coordinates)])
     else
       render json: User.all
     end
