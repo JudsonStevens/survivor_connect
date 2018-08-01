@@ -13,7 +13,7 @@ class Api::LawyersController < ApiController
   end
 
   def create
-    require 'pry'; binding.pry
+    # require 'pry'; binding.pry
   end
 
 end
