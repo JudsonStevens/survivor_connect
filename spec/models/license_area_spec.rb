@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe LicenseArea, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'relationships' do
+    it {should have_many(:lawyer_license_areas)}
+  end
 end
