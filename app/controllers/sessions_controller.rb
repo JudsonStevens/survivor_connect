@@ -1,5 +1,6 @@
 class SessionsController < Devise::SessionsController
-  before_action :authenticate_user!, execpt: [:create]
+  before_action :authenticate_user!, except: [:create, :destroy]
+  skip_before_action :verify_signed_out_user, raise: false
   respond_to :json
 
   def show
@@ -7,9 +8,9 @@ class SessionsController < Devise::SessionsController
     render json: current_user
   end
 
-  private
-
-  def respond_to_on_destroy
-    head :no_content
+  def destroy
+    render json: { message: 'User was logged out.'}
   end
+
+  private
 end

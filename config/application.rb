@@ -24,7 +24,7 @@ module SurvivorConnect
         origins 'http://survivor-connect.s3-website.us-east-2.amazonaws.com'
         resource '*', 
           headers: %w(Authorization),
-          methods: [:get, :post],
+          methods: [:get, :post, :delete],
           expose: %w(Authorization),
           max_age: 600
       end
@@ -32,7 +32,7 @@ module SurvivorConnect
         origins 'http://www.survivor-connect.com'
         resource '*', 
           headers: %w(Authorization),
-          methods: [:get, :post],
+          methods: [:get, :post, :delete],
           expose: %w(Authorization),
           max_age: 600
       end
@@ -40,7 +40,7 @@ module SurvivorConnect
         origins 'http://survivor-connect.com'
         resource '*', 
           headers: %w(Authorization),
-          methods: [:get, :post],
+          methods: [:get, :post, :delete],
           expose: %w(Authorization),
           max_age: 600
       end
@@ -48,7 +48,7 @@ module SurvivorConnect
         origins 'http://localhost:3000'
         resource '*', 
           headers: %w(Authorization),
-          methods: [:get, :post],
+          methods: [:get, :post, :delete],
           expose: %w(Authorization),
           max_age: 600
       end
@@ -56,7 +56,7 @@ module SurvivorConnect
         origins 'https://maps.googleapis.com/*'
         resource '*', 
           headers: %w(Authorization),
-          methods: [:get, :post],
+          methods: [:get, :post, :delete],
           expose: %w(Authorization),
           max_age: 600
       end
